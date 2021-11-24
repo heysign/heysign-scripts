@@ -2,7 +2,7 @@
 
 usage() {
   echo "Usage)"
-  echo "  export HEYSIGN_SERVER_IP=[your server ip]"
+  echo "  export HEYSIGN_SERVER_IP=[your machine's public ip]"
   echo "  export HEYSIGN_BLOCKCHAIN_TYPE=[AERGO, NIPA, NONE]"
   echo "  ./install-heysign.sh <server-ip> <blockchain-type>"
   echo
