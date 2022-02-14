@@ -90,19 +90,18 @@ cd ..
 NIPA_IP=133.186.246.89
 
 for FILE in $(ls $SRC_DIR/nipa); do
-  cat $SRC_DIR/nipa/$FILE | sed "s/$NIPA_IP/$SERVER_IP/g" > $DEST_DIR/$FILE
+  sed "s/$NIPA_IP/$SERVER_IP/g" $SRC_DIR/nipa/$FILE > $DEST_DIR/$FILE
 done
 
 for FILE in $(ls $SRC_DIR/database-init); do
-  cat $SRC_DIR/database-init/$FILE | sed "s/$NIPA_IP/$SERVER_IP/g" > $DEST_DIR/config/database-init/$FILE
+  sed "s/$NIPA_IP/$SERVER_IP/g" $SRC_DIR/database-init/$FILE > $DEST_DIR/config/database-init/$FILE
 done
 
 for FILE in $(ls $SRC_DIR/realm-config); do
-  cat $SRC_DIR/realm-config/$FILE | sed "s/$NIPA_IP/$SERVER_IP/g" > $DEST_DIR/config/realm-config/$FILE
+  sed "s/$NIPA_IP/$SERVER_IP/g" $SRC_DIR/realm-config/$FILE > $DEST_DIR/config/realm-config/$FILE
 done
 
-sed -i _bk "s/APPLICATION_TIMESTAMP_BLOCKCHAIN_TYPE=NIPA/APPLICATION_TIMESTAMP_BLOCKCHAIN_TYPE=$BLOCKCHAIN_TYPE/g" $DEST_DIR/app.yml \
-  && rm -f $DEST_DIR/app.yml_bk
+sed -i "s/APPLICATION_TIMESTAMP_BLOCKCHAIN_TYPE=NIPA/APPLICATION_TIMESTAMP_BLOCKCHAIN_TYPE=$BLOCKCHAIN_TYPE/g" $DEST_DIR/app.yml
 
 rm -rf $DEST_DIR/heysign-service
 
